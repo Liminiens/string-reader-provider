@@ -2,6 +2,7 @@ module StringReaderProviderTests
 
 open FSharp.Data.StringReaderProvider
 open NUnit.Framework
+open System
 
 type ExampleFile = StringReaderProvider<"files/example.txt">
 type ExampleFileAlt = StringReaderProvider<"files\example.txt">
@@ -11,7 +12,7 @@ type MultilineFile = StringReaderProvider<"../test_files/multiline.txt">
 let ``Provider returns correct value`` () =
     Assert.AreEqual(ExampleFile.Content, "Hello world")
     Assert.AreEqual(ExampleFileAlt.Content, "Hello world")
-    Assert.AreEqual(MultilineFile.Content, "Something\r\nHere")
+    Assert.AreEqual(MultilineFile.Content, sprintf "Something%sHere" Environment.NewLine)
 
 type KOI8RFile = StringReaderProvider<"files/example.KOI8-R.txt", "KOI8-R">
 
