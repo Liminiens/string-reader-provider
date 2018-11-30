@@ -1,0 +1,35 @@
+type file
+id FSharp.Data.StringReaderProvider
+authors
+    Liminiens
+owners
+    Liminiens
+projectUrl
+    https://github.com/Liminiens/string-reader-provider
+licenseUrl
+    https://github.com/Liminiens/string-reader-provider/blob/master/LICENSE.txt
+requireLicenseAcceptance
+    false
+tags
+    F# fsharp typeproviders StringReaderProvider
+summary
+    F# type provider for reading files to string constant
+description
+    F# type provider for reading files to string constant
+tags
+    F# fsharp typeproviders StringReaderProvider
+files
+    bin/Release/net45/StringReaderProvider.Runtime.* ==> lib/net45
+    bin/Release/netstandard2.0/StringReaderProvider.Runtime.* ==> lib/netstandard2.0
+    bin/Release/typeproviders/fsharp41/netstandard2.0/*.dll ==> typeproviders/fsharp41/netstandard2.0
+    bin/Release/typeproviders/fsharp41/netcoreapp2.0/*.dll ==> typeproviders/fsharp41/netcoreapp2.0
+    bin/Release/typeproviders/fsharp41/net45/*.dll ==> typeproviders/fsharp41/net45
+references
+    StringReaderProvider.Runtime.dll
+dependencies
+  FSharp.Core >= LOCKEDVERSION
+
+framework: netcoreapp2.0
+    System.Text.Encoding.CodePages >= LOCKEDVERSION
+framework: netstandard2.0
+    System.Text.Encoding.CodePages >= LOCKEDVERSION
