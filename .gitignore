@@ -6,7 +6,6 @@
 
 packages/
 paket-files/
-paket.exe
 
 #Output
 output/

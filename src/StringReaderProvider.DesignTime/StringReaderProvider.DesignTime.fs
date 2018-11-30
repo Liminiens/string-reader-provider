@@ -1,22 +1,23 @@
 module StringReaderProviderImplementation
 
 open System
-open System.Collections.Generic
 open System.IO
 open System.Reflection
 open FSharp.Quotations
 open FSharp.Core.CompilerServices
-open MyNamespace
+open FSharp.Data.StringReaderProvider
 open ProviderImplementation
 open ProviderImplementation.ProvidedTypes
 open System.Text
 
 [<TypeProvider>]
 type StringReaderProvider (config : TypeProviderConfig) as this =
-    inherit TypeProviderForNamespaces (config, assemblyReplacementMap=[("StringReaderProvider.DesignTime", "StringReaderProvider.Runtime")])
+    inherit TypeProviderForNamespaces (config, assemblyReplacementMap=[("StringReaderProvider.DesignTime", "StringReaderProvider.Runtime")])     
 
     let ns = "FSharp.Data.StringReaderProvider"
     let asm = Assembly.GetExecutingAssembly()
+
+    do asm.Location |> Path.GetDirectoryName |> this.RegisterProbingFolder
 
     // check we contain a copy of runtime files, and are not referencing the runtime DLL
     do assert (typeof<``Asm marker``>.Assembly.GetName().Name = asm.GetName().Name)  
@@ -31,6 +32,8 @@ type StringReaderProvider (config : TypeProviderConfig) as this =
         Path.GetFullPath(Path.Combine(config.ResolutionFolder, replaceAltChars path))
 
     let createType typeName (args: obj array) =
+        EncodingUtility.registerCodePages()
+
         let asm = ProvidedAssembly()
         let path = args.[0] :?> string
         let encodingName = args.[1] :?> string
@@ -44,7 +47,7 @@ type StringReaderProvider (config : TypeProviderConfig) as this =
         if not <| File.Exists(filePath) then
             failwithf "Specified file \"%s\" could not be found" path
 
-        let content = File.ReadAllText(filePath, Encoding.GetEncoding(encodingName))
+        let content = File.ReadAllText(filePath, Encoding.GetEncoding(encodingName)).Trim()
 
         let contentField = ProvidedField.Literal("Content", typeof<string>, content)
         contentField.AddXmlDoc(sprintf "Content of '%s'" filePath)
