@@ -13,9 +13,9 @@ requireLicenseAcceptance
 tags
     F# fsharp typeproviders StringReaderProvider
 summary
-    F# type provider for reading files to string constant
+    F# generative type provider for reading files content to a string constant
 description
-    F# type provider for reading files to string constant
+    F# generative type provider for reading files content to a string constant
 tags
     F# fsharp typeproviders StringReaderProvider
 files
@@ -27,8 +27,11 @@ files
 references
     StringReaderProvider.Runtime.dll
 dependencies
-  FSharp.Core >= LOCKEDVERSION
+    framework: net45
+        FSharp.Core >= LOCKEDVERSION
     framework: netcoreapp2.0
+        FSharp.Core >= LOCKEDVERSION
         System.Text.Encoding.CodePages >= LOCKEDVERSION
     framework: netstandard2.0
+        FSharp.Core >= LOCKEDVERSION
         System.Text.Encoding.CodePages >= LOCKEDVERSION
