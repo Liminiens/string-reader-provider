@@ -18,7 +18,6 @@ type StringReaderProvider (config : TypeProviderConfig) as this =
     let asm = Assembly.GetExecutingAssembly()
 
     do asm.Location |> Path.GetDirectoryName |> this.RegisterProbingFolder
-
     // check we contain a copy of runtime files, and are not referencing the runtime DLL
     do assert (typeof<``Asm marker``>.Assembly.GetName().Name = asm.GetName().Name)  
 
@@ -61,7 +60,7 @@ type StringReaderProvider (config : TypeProviderConfig) as this =
 
     let summaryText = 
         """<summary>String reader type provider</summary>
-           <param name='Path'>File encoding, default is 'UTF-8'</param>
+           <param name='Path'>Path to file</param>
            <param name='Encoding'>File encoding, default is 'UTF-8'</param>"""
 
     let generatedType = 
