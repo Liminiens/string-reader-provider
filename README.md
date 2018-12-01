@@ -1,6 +1,6 @@
 ## String reader provider
 
-F# Type Provider which provides file content as a string constant
+F# generative Type Provider which provides file content as a string constant
 
 ### Example
 
