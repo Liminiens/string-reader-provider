@@ -1,3 +1,5 @@
+[![NuGet](https://img.shields.io/nuget/v/FSharp.Data.StringReaderProvider.svg)](https://www.nuget.org/packages/FSharp.Data.StringReaderProvider)
+
 ## String reader provider
 
 F# generative Type Provider which provides file content as a string constant
